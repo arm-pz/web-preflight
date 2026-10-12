@@ -1,0 +1,10 @@
+{
+  "name": "web-preflight",
+  "version": "1.0.0",
+  "description": "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "homepage": "https://skills.caffeinity.com/web-preflight/",
+  "repository": "https://github.com/arm-pz/web-preflight"
+}
