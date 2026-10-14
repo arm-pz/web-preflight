@@ -1,6 +1,6 @@
 # Web Preflight
 
-A lightweight, non-destructive website release-check skill. It helps identify accidental exposure of secrets or sensitive files, unsafe deployment surfaces, weak security controls, misleading SPA catch-all responses, and common scanner noise.
+A lightweight, non-destructive website release-check skill: a pre-launch check for a site you own, run before you deploy. It helps identify accidental exposure of secrets or sensitive files (`.env`, `.git`, config), unsafe deployment surfaces, weak security controls, misleading SPA catch-all responses, and common scanner noise.
 
 ## When to use it
 
