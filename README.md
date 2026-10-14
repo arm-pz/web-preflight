@@ -26,7 +26,11 @@ Most "check my site before launch" prompts produce one of two wrong answers. A `
 
 ## Install
 
-Place `SKILL.md` in your agent's skills directory, for example:
+```
+npx skills add arm-pz/web-preflight --skill web-preflight
+```
+
+Or place `SKILL.md` in your agent's skills directory, for example:
 
 ```bash
 mkdir -p ~/.qoder/skills/web-preflight
