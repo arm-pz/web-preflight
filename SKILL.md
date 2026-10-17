@@ -40,6 +40,8 @@ For multiple hosts, report one verdict per host and an overall verdict using thi
 
 Do not downgrade a confirmed exposure to INCONCLUSIVE merely because a WAF/CDN is also present.
 
+A verdict describes this bounded external check only. PASS never implies that authorization, quota, or input handling was tested. When the red-team workflow has not run, report it as untested rather than silent.
+
 ## Request contract and budget
 
 Use only bounded GET and HEAD requests. Prefer HEAD for checks that need only headers; use GET when a body is needed for catch-all or content classification. A GET is not automatically harmless: request only the exact paths listed below, never add query parameters, and avoid paths known to cause state changes.
@@ -192,13 +194,25 @@ When the user provides logs or screenshots:
 - Investigate unexpected 200, 201, or 204 responses, uploads, authentication successes, or state-changing requests.
 - Remember that a 200 may be an SPA shell or a WAF-generated page.
 
+## Finding record
+
+Give every finding the fields below so the release summary and the other pre-ship workflows can cite it without re-reading this report:
+
+- `finding-id` - `PREFLIGHT-<nn>`; reuse the same id for the same issue across reruns.
+- `route` - the exact path or URL that produced it, with the host.
+- `evidence-ref` - status, final URL, content type and bounded size or fingerprint, or the log line reviewed.
+- `severity` - the CRITICAL/HIGH/MEDIUM/LOW classification above.
+- `remediation` - `open`, `fixed-verified`, `fixed-unproven`, or `accepted-risk`.
+
+Keep this host verdict separate from any application-test verdict. A `PREFLIGHT-*` finding is cited by reference, never merged into another skill's result.
+
 ## Report format
 
 Start with per-host verdicts, followed by the overall verdict. Include:
 
 - Scope and request count
 - What was actually checked
-- Confirmed findings
+- Confirmed findings, each with the finding-record fields above
 - Expected scanner traffic and false positives
 - WAF/CDN limitations and what could not be assessed
 - Evidence: path, status, final URL, content type, bounded response size/fingerprint, and sanitized diagnostic headers
@@ -210,6 +224,6 @@ Never include secrets or raw sensitive response bodies. State explicitly when a 
 ## Handoffs
 
 - Use a code-review workflow for application-source vulnerabilities.
-- Use an authorized penetration-testing workflow for active exploitation or broader attack simulation.
+- Use `pre-ship-security-red-team` for authenticated authorization testing (IDOR, role escalation, quota and input abuse, XSS, SSRF, cache and preview isolation, AI prompt injection). It runs in an isolated local environment, fixes what fails, and reruns with captured evidence. Attack simulation beyond those scenarios needs a dedicated authorized penetration-testing workflow.
 - Use DNS/TLS tooling for certificate, DNS, or domain-configuration investigations.
 - If a dedicated workflow is unavailable, keep this audit bounded and non-destructive, and state the limitation.

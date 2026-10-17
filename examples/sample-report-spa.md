@@ -24,8 +24,8 @@
 
 ## Confirmed findings
 
-- **MEDIUM — Source map accessible.** The homepage-referenced production JavaScript asset had a corresponding accessible source map. The inspected bounded response contained source structure and comments; no credentials or other sensitive material were confirmed.
-- **LOW — HSTS missing.** The HTTPS homepage response did not include Strict-Transport-Security.
+- **PREFLIGHT-01 — MEDIUM — Source map accessible.** Route: `https://shop.example.test/assets/index-a1b2c3.js.map`, the map for the homepage-referenced production JavaScript asset. Evidence: bounded response contained source structure and comments; no credentials or other sensitive material were confirmed. Remediation: open.
+- **PREFLIGHT-02 — LOW — HSTS missing.** Route: `https://shop.example.test/`. Evidence: the HTTPS homepage response headers did not include Strict-Transport-Security. Remediation: open.
 
 ## Expected scanner traffic / false positives
 
