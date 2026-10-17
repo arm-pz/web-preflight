@@ -6,7 +6,7 @@ A lightweight, non-destructive website release-check skill: a pre-launch check f
 
 Use Web Preflight when shipping, deploying, publishing, or reviewing a website or API—for example, when someone asks for a preflight, a production URL check, or a security check before launch. It can also help interpret access-log or analytics evidence.
 
-It is not a penetration-testing or application-code-review workflow. It does not exploit vulnerabilities, brute-force paths, submit forms, authenticate, or perform broad port scans.
+It is not a penetration-testing or application-code-review workflow. It does not exploit vulnerabilities, brute-force paths, submit forms, authenticate, or perform broad port scans. For executed authorization and abuse testing, use its sibling [pre-ship-security-red-team](https://github.com/arm-pz/pre-ship-security-red-team): a Web Preflight `PASS` never means IDOR, quotas or input handling were tested.
 
 ## Safety and scope
 
@@ -36,6 +36,15 @@ Or place `SKILL.md` in your agent's skills directory, for example:
 mkdir -p ~/.qoder/skills/web-preflight
 cp SKILL.md ~/.qoder/skills/web-preflight/SKILL.md
 ```
+
+## Related skills
+
+This family covers pre-launch checks; each stays in its lane, and a pass in one is not a pass in another:
+
+- [pre-ship-security-red-team](https://github.com/arm-pz/pre-ship-security-red-team) — active, authenticated testing of application logic: 14 authorization and abuse checks with captured evidence, then fixes and reruns.
+- [pre-ship-performance-audit](https://github.com/arm-pz/pre-ship-performance-audit) — four read-only subagent speed audits with measured before/after Lighthouse medians.
+
+Findings cross-reference by ID (`PREFLIGHT-01`, `REDTEAM-S02`, `PERF-03`) rather than merging verdicts; each skill defines the shared five-field record in its own `SKILL.md`.
 
 ## License
 
