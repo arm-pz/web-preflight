@@ -1,6 +1,7 @@
 ---
 name: web-preflight
 description: Use when shipping, deploying, publishing, launching, reviewing, or pre-flighting a website or API and you want a lightweight check for accidental exposure of secrets, source or configuration files, admin and debug surfaces, unsafe redirects, missing security controls, and misleading 200 responses. Trigger phrases include "before we ship", "security check", "preflight", "audit the site", "check the production URL", "is my .env exposed", and "why does /.env return 200", including when access-log or analytics evidence is supplied. Checks only sites the user owns or is authorized to assess, with bounded GET and HEAD requests and a fixed compact path set; distinguishes genuine resources from SPA catch-all and blanket WAF responses. Not for penetration testing, exploitation, credential testing, broad port scanning, or application-code review; use a dedicated authorized security-testing or code-review workflow instead.
+version: 1.0.0
 ---
 
 # Web Preflight
